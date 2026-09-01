@@ -35,7 +35,7 @@ FastAPI auto-generates interactive API documentation from the code's type hints,
 
 ```bash
 # 1. Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/gitvorks/inventory-management-crud-fastapi-react-postgresql.git
 cd fastapi-learning
 
 # 2. Create and activate a virtual environment
