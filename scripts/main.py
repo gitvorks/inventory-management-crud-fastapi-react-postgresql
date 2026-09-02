@@ -18,6 +18,8 @@ products = [
     Product(id=6, name="Table", description="A wooden table", price=199.99, quantity=20),
 ]
 
+# get product by its id
+
 @app.get("/product/{id}")
 def get_product_by_id(id: int):
     for product in products:
@@ -25,3 +27,10 @@ def get_product_by_id(id: int):
             return product
 
     return "product not found"
+
+# adding product
+
+@app.post("/product")
+def add_product(product: Product):
+    products.append(product)
+    return product
