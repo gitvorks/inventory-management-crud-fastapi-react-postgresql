@@ -45,3 +45,14 @@ def update_product(id: int, product: Product):
             return "Product added successfully"
 
     return "No product found"
+
+# deleting product
+
+@app.delete("/product")
+def delete_product(id: int):
+    for i in range(len(products)):
+        if products[i].id == id:
+            del products[i]
+            return "Product deleted"
+            
+    return "No product found"
