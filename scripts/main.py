@@ -17,3 +17,11 @@ products = [
     Product(id=5, name="Pen", description="A blue ink pen", price=1.99, quantity=100),
     Product(id=6, name="Table", description="A wooden table", price=199.99, quantity=20),
 ]
+
+@app.get("/product/{id}")
+def get_product_by_id(id: int):
+    for product in products:
+        if product.id == id:
+            return product
+
+    return "product not found"
