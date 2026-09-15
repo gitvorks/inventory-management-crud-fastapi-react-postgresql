@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+# Due to pydantic Basemodel now we don't need separate constructor
+# pydantic class
 class Product(BaseModel):
     id: int
     name: str
@@ -7,4 +9,6 @@ class Product(BaseModel):
     price: float
     quantity: int
 
-# Due to pydantic Basemodel now we don't need separate constructor
+# Create a separate Product class for SQLAlchemy so the database schema
+# is generated based on this specific class.
+
