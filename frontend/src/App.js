@@ -199,7 +199,7 @@ function App() {
       <header className="topbar">
         <div className="brand">
           <span className="brand-badge">📦</span>
-          <h1>Telusko Trac</h1>
+          <h1>Vorks Track</h1>
         </div>
         <div className="top-actions">
           <button className="btn btn-light" onClick={fetchProducts} disabled={loading}>
@@ -253,7 +253,7 @@ function App() {
               <input
                 type="number"
                 name="price"
-                placeholder="Price"
+                placeholder="Price (₹)"
                 value={form.price}
                 onChange={handleChange}
                 required
@@ -318,7 +318,7 @@ function App() {
                         className={`sortable ${sortField === 'price' ? `sort-${sortDirection}` : ''}`}
                         onClick={() => handleSort('price')}
                       >
-                        Price
+                        Price (₹)
                       </th>
                       <th 
                         className={`sortable ${sortField === 'quantity' ? `sort-${sortDirection}` : ''}`}
@@ -335,7 +335,7 @@ function App() {
                         <td>{p.id}</td>
                         <td className="name-cell">{p.name}</td>
                         <td className="desc-cell" title={p.description}>{p.description}</td>
-                        <td className="price-cell">${currency(p.price)}</td>
+                        <td className="price-cell">₹{currency(p.price)}</td>
                         <td>
                           <span className="qty-badge">{p.quantity}</span>
                         </td>
