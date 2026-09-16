@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from models import Product
 from database import SessionLocal, engine
@@ -36,7 +36,7 @@ def get_db():
 
 def init_db():
     db = SessionLocal()
-    count = db.query(database_models.Product).count
+    count = db.query(database_models.Product).count()
 
     if count == 0:
         for product in products:
@@ -57,7 +57,7 @@ def get_product_by_id(id: int, db: Session = Depends(get_db)):
     db_product = db.query(database_models.Product).filter(database_models.Product.id == id).first()
     if db_product:
         return db_product
-    return "product not found"
+    raise HTTPException(status_code=404, detail="Product not found")
 
 # adding product
 
@@ -80,7 +80,7 @@ def update_product(id: int, product: Product, db: Session = Depends(get_db)):
         db.commit()
         return "Product updated"
     else:
-        return "No product found"
+        raise HTTPException(status_code=404, detail="Product not found")
 
 # deleting product
 
@@ -90,5 +90,5 @@ def delete_product(id: int, db: Session = Depends(get_db)):
     if db_product:
         db.delete(db_product)
         db.commit()
-    else:   
-        return "No product found"
+    else:
+        raise HTTPException(status_code=404, detail="Product not found")
